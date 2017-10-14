@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float moveSpeed;
+    public float turnSpeed;
     private Rigidbody myRigidBody;
 
     private Vector3 moveInput;
@@ -29,9 +30,14 @@ public class PlayerController : MonoBehaviour {
 
         if (groundplane.Raycast(cameraRay, out rayLength))
         {
-            Vector3 pointToLookAt = cameraRay.GetPoint(rayLength);
-            //Debug.DrawLine(cameraRay.origin, pointToLookAt, Color.green);
-            transform.LookAt(new Vector3(pointToLookAt.x, transform.position.y, pointToLookAt.z));
+            Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit floorHit;
+            if(Physics.Raycast(camRay, out floorHit)) {
+                Vector3 playerToMouse = floorHit.point - transform.position;
+                playerToMouse.y = 0f;
+                Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, newRotation, Time.deltaTime * turnSpeed);
+            }
         }
 	}
 
