@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     private Vector3 moveVelocity;
 
     private Camera mainCamera;
+    public GunController theGun;
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +39,12 @@ public class PlayerController : MonoBehaviour {
                 Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, newRotation, Time.deltaTime * turnSpeed);
             }
+        }
+        if (Input.GetMouseButtonDown(0)) {
+            theGun.isFiring = true;
+        }
+        if (Input.GetMouseButtonUp(0)) {
+            theGun.isFiring = false;
         }
 	}
 
