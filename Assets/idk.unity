@@ -281,6 +281,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1058266331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1058266332}
+  m_Layer: 0
+  m_Name: Barrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1058266332
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1058266331}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.11, z: 0.511}
+  m_LocalScale: {x: 1.1323607, y: 1.1323607, z: 1.1323607}
+  m_Children: []
+  m_Father: {fileID: 1162255530}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1162255529
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,8 +320,9 @@ GameObject:
   - component: {fileID: 1162255533}
   - component: {fileID: 1162255532}
   - component: {fileID: 1162255531}
+  - component: {fileID: 1162255534}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,7 +337,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.45, y: 0.13, z: 0.36}
   m_LocalScale: {x: 0.15506941, y: 0.25687933, z: 1.0565925}
-  m_Children: []
+  m_Children:
+  - {fileID: 1058266332}
   m_Father: {fileID: 1223636884}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -363,6 +393,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1162255529}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1162255534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1162255529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21f76e113207708499ce861ad2c9374a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFiring: 0
+  bullet: {fileID: 114864901087008946, guid: 1e585f6e5d0799e49932ca499bf1dd6e, type: 2}
+  bulletSpeed: 7
+  timeBetweenShots: 0.4
+  firePoint: {fileID: 1058266332}
 --- !u!1 &1223636880
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   turnSpeed: 200
+  theGun: {fileID: 1162255534}
 --- !u!54 &1223636886
 Rigidbody:
   m_ObjectHideFlags: 0
